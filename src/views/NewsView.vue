@@ -13,15 +13,13 @@ export default {
     }
   },
   created() {
-    var vm = this;
     fetchNewsList()
-      .then(function(response) {
+      .then(response => {
         console.log(response);
-        vm.users = response.data;
+        this.users = response.data;
       })
       .catch(function(error) {
         console.log(error);
-        
       })
   }
 }
