@@ -1,7 +1,8 @@
 import { fetchNewsList, 
         fetchJobsList, 
         fetchAskList, 
-        fetchUserInfo} from '../api/index.js';
+        fetchUserInfo,
+        fetchCommentItem} from '../api/index.js';
 export default {
     //비동기 호출은 actions에서 (api호출)
     //mutation(methods와 같은)에서 데이터를 state로 이동
@@ -38,6 +39,15 @@ export default {
         fetchUserInfo(name)
             .then(({data}) => {
                 commit('SET_USER', data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+    FETCH_ITEM({ commit }, id) {
+        fetchCommentItem(id)
+            .then(({data}) => {
+                commit('SET_ITEM', data);
             })
             .catch(error => {
                 console.log(error);
