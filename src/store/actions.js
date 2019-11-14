@@ -9,7 +9,7 @@ export default {
     FETCH_NEWS(context) {
         fetchNewsList()
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 context.commit('SET_NEWS', response.data);//mutation에 제어권 넘김
             })
             .catch(error => {
