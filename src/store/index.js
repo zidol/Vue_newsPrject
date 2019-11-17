@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
         jobs : [],
         asks : [],
         user : {},
-        item : [],
+        item : {},
     },
     //computed와 같은 속성
     getters : {

@@ -38,6 +38,8 @@ export default {
     FETCH_USER({commit}, name) {
         fetchUserInfo(name)
             .then(({data}) => {
+                // api(서버) 에서 불러온 데이터 mutation 호출해서
+                //store에 저장(state에 저장)
                 commit('SET_USER', data);
             })
             .catch(error => {
