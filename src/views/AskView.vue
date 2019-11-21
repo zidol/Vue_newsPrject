@@ -27,6 +27,9 @@ export default {
   components: {
     ListItem,
   },
+  created() {
+    this.$store.dispatch("FETCH_ASKS");
+  }
 }
   // computed: {
     //mapHelper
