@@ -2,7 +2,7 @@ import {
   // fetchNewsList,
   // fetchJobsList,
   // fetchAskList,
-  // fetchUserInfo,
+  fetchUserInfo,
   fetchCommentItem,
   fetchList
 } from "../api/index.js";
@@ -38,6 +38,7 @@ export default {
   //       console.log(error);
   //     });
   // },
+ //promise
   // FETCH_USER({ commit }, name) {
   //   return fetchUserInfo(name)
   //     .then(({ data }) => {
@@ -49,22 +50,55 @@ export default {
   //       console.log(error);
   //     });
   // },
-  FETCH_ITEM({ commit }, id) {
-    return fetchCommentItem(id)
-      .then(({ data }) => {
-        commit("SET_ITEM", data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  //async await
+  async FETCH_USER({ commit }, name) {
+    try {
+      const response = await fetchUserInfo(name);
+      commit('SET_USER', response.data);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   },
-  FETCH_LIST({ commit }, pageName) {
-    return fetchList(pageName)
-        .then(response => {
-          console.log(4)
-            commit('SET_LIST', response.data);
-            return response; 
-        })
-        .catch(error => console.log(error));
-  } 
+  //promise
+  // FETCH_ITEM({ commit }, id) {
+  //   return fetchCommentItem(id)
+  //     .then(({ data }) => {
+  //       commit("SET_ITEM", data);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // },
+  async FETCH_ITEM({ commit }, id) {
+    try {
+      const data = await fetchCommentItem(id);
+      console.log(data);
+      commit('SET_ITEM', data.data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  //promise
+  // FETCH_LIST({ commit }, pageName) {
+  //   return fetchList(pageName)
+  //       .then(response => {
+  //         console.log(4)
+  //           commit('SET_LIST', response.data);
+  //           return response; 
+  //       })
+  //       .catch(error => console.log(error));
+  // },
+  //async
+  async FETCH_LIST({ commit }, pageName) {
+    try {
+      console.log(4);
+      const response = await fetchList(pageName);
+      commit('SET_LIST', response.data);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
